@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Query
 from fastapi.responses import PlainTextResponse
 import json
 from datetime import datetime, timezone
@@ -8,9 +8,9 @@ webhook_router = APIRouter (prefix="/webhook", tags=['Webhook'])
 
 @webhook_router.get ("/verify")
 async def verify_webhook (
-    hub_mode:str = None,
-    hub_challenge:str = None,
-    hub_verify_token:str = None
+    hub_mode:str = Query (None, alias="hub.mode"),
+    hub_challenge:str = Query (None, alias="hub.challenge"),
+    hub_verify_token:str = Query (None, alias="hub.verify_token")
 ):
     print (f"{hub_mode}  {hub_challenge}  {hub_verify_token}")
     print (verifyToken)
