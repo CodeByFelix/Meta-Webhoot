@@ -6,7 +6,7 @@ from Webhook.utils import verifyToken
 
 webhook_router = APIRouter (prefix="/webhook", tags=['Webhook'])
 
-@webhook_router.get ("/verify")
+@webhook_router.get ("/webhook")
 async def verify_webhook (
     hub_mode:str = Query (None, alias="hub.mode"),
     hub_challenge:str = Query (None, alias="hub.challenge"),
@@ -20,7 +20,7 @@ async def verify_webhook (
     else:
         return PlainTextResponse (content='Forbidden', status_code=403)
     
-@webhook_router.post ("/message")
+@webhook_router.post ("/webhook")
 async def receive_webhook (request: Request):
     body = await request.json ()
     timestamp = datetime.now(timezone.utc).strftime ("%Y-%m-%d %H:%M:%S")
