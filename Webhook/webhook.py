@@ -26,6 +26,15 @@ async def receive_webhook (request: Request):
     timestamp = datetime.now(timezone.utc).strftime ("%Y-%m-%d %H:%M:%S")
 
     print(f"\n\n📩 Webhook received at {timestamp}\n")
-    print(json.dumps(body, indent=2))
+    #print(json.dumps(body, indent=2))
+
+    messages = body['entry'][0]['changes'][0]['value'].get ('messages', {})
+    if messages:
+        receivedMessage = messages['text']['body']
+        receivedFrom = messages['from']
+        phone_id = body['entry'][0]['changes'][0]['value']['metadata']['phone_number_id']
+
+        print (messages)
+        print (phone_id)
 
     return PlainTextResponse (content="EVENT_RECEIVED", status_code=200)

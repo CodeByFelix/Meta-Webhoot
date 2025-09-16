@@ -1,3 +1,5 @@
 __pycache__/
 Webhook/__pycache__/
 .env
+test.json
+test.ipynb
