@@ -30,8 +30,8 @@ async def receive_webhook (request: Request):
 
     messages = body['entry'][0]['changes'][0]['value'].get ('messages', {})
     if messages:
-        receivedMessage = messages['text']['body']
-        receivedFrom = messages['from']
+        receivedMessage = messages[0]['text']['body']
+        receivedFrom = messages[0]['from']
         phone_id = body['entry'][0]['changes'][0]['value']['metadata']['phone_number_id']
 
         print (messages)
