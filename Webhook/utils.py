@@ -27,7 +27,7 @@ async def sendMessage (id:str, phoneNO:str, message:str) -> str:
         'to': phoneNO,
         'type': 'text',
         'text': {
-            'body': "Hi, \nThis is Felix"
+            'body': message
             }
         }
 
