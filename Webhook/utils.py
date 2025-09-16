@@ -3,7 +3,7 @@ from httpx import AsyncClient
 import os
 
 
-client = None
+client = AsyncClient ()
 load_dotenv ()
 
 verifyToken = os.getenv ("VERIFY_TOKEN")
