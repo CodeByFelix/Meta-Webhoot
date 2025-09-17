@@ -3,6 +3,7 @@ from fastapi.responses import PlainTextResponse
 import json
 from datetime import datetime, timezone
 from Webhook.utils import verifyToken, sendMessage
+from Webhook.bot import llm_call
 
 webhook_router = APIRouter (prefix="/webhook", tags=['Webhook'])
 
@@ -37,7 +38,8 @@ async def receive_webhook (request: Request):
         #print (messages)
         #print (phone_id)
 
-        replyMessage = f'You sent \n"{receivedMessage}"'
+        # f'You sent \n"{receivedMessage}"'
+        replyMessage = await llm_call (message= receivedMessage)
         response = await sendMessage (id=phone_id, phoneNO=receivedFrom, message=replyMessage)
         print (response)
     return PlainTextResponse (content="EVENT_RECEIVED", status_code=200)
