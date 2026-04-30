@@ -27,7 +27,7 @@ async def receive_webhook (request: Request):
     timestamp = datetime.now(timezone.utc).strftime ("%Y-%m-%d %H:%M:%S")
 
     print(f"\n\n📩 Webhook received at {timestamp}\n")
-    #print(json.dumps(body, indent=2))
+    print(json.dumps(body, indent=2))
 
     messages = body['entry'][0]['changes'][0]['value'].get ('messages', {})
     if messages:
