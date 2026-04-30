@@ -1,6 +1,6 @@
 from langgraph.graph import StateGraph, MessagesState, START, END
 from langchain_core.messages import HumanMessage, SystemMessage
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 import os
 from dotenv import load_dotenv
 
@@ -11,7 +11,7 @@ async def llm_call (message:str) -> str:
 
 
 load_dotenv ()
-llm = ChatOpenAI (model = "gpt-4.1-nano", api_key=os.getenv("OPENAI_API_KEY"))
+llm = ChatGroq (model = "openai/gpt-oss-120b", api_key=os.getenv("GROQ_API_KEY"))
 sys_msg = """
 You are a helpful assistant that guides users on operating and solving issues related to the WhatsApp application on their smartphones.
 

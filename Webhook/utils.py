@@ -16,7 +16,7 @@ async def initClient ():
     
 
 async def sendMessage (id:str, phoneNO:str, message:str) -> str:
-    url = f"https://graph.facebook.com/v23.0/{id}/messages"
+    url = f"https://graph.facebook.com/v25.0/{id}/messages"
     header = {
         'content-type': 'application/json',
         'Authorization': f'Bearer {accessToken}'
